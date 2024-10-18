@@ -1,0 +1,25 @@
+int main(void)
+{
+int num1,num2,plus=0,minus=0;
+int i;
+
+scanf("%d", &num1);  //정수 몇 개를 넣을 것인지 입력
+
+for (i=0;i<num1;i++){   //반복문을 통해 정수들을 입력
+    scanf("%d", &num2);
+    if (num2>0){     //조건문을 통해 양의 정수와 음의 정수 개수를 업데이트
+        plus++;
+    }
+    if (num2<0){
+        minus++;
+
+    }
+        
+}
+printf("양의 정수:%d\n", plus);
+printf("음의 정수:%d\n", minus);
+    
+
+
+return 0;
+}
