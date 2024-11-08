@@ -1,0 +1,166 @@
+#3-0
+#! bin/sh
+
+echo "hello world"
+
+exit 0
+
+
+#3-1
+#!/bin/sh
+
+if [ -n "$1" ] 
+then
+    count=$1
+    while [ $count -ne 0 ]
+    do
+        echo "hello world"
+        count=$(($count - 1))
+    done
+else
+    while [ 1 ]
+    do
+        echo "hello world"
+    done
+fi
+
+exit 0
+
+
+#3-2
+#!/bin/sh
+
+num=`expr $1 $2 $3`
+
+echo "$num"
+
+exit 0
+
+
+#3-3
+#!/bin/sh
+
+weight=$1
+height=$2
+
+height_squared=$(($height * $height))
+bmi=$(($weight * 100000 / $height_squared))
+
+if [ $bmi -le 185 ]; then
+    echo "저체중입니다."
+elif [ $bmi -lt 230 ]; then
+    echo "정상체중입니다."
+else
+    echo "과체중입니다."
+fi
+
+exit 0
+
+
+#3-4
+#!/bin/sh
+
+echo "리눅스가 재밌나요? (yes / no)"
+
+read answer
+
+case $answer in
+    yes | y | Y | Yes | YES | yyy | yesyesyes | 네 | 예 )
+        echo "yes";;
+    no | n | N | No | NO | nono | nonono | 아니요 | ㅠ | 아뇨)
+        echo "no";;
+    *)
+        echo "yes or no로 입력해 주세요. "
+        exit 1;;
+esac
+
+exit 0
+
+
+#3-5
+#!/bin/sh
+
+checkfile ()
+{
+   echo "함수 안으로 들어왔음"
+   ls $1
+}
+
+echo "프로그램을 시작합니다"
+checkfile $1
+echo "프로그램을 종료합니다"
+
+exit 0
+
+
+#3-6
+#!/bin/bash
+
+if [ -d "$1" ]
+then
+   :
+else
+   mkdir $1
+   cd $1
+   i=0
+   while [ $i -lt 5 ]
+   do
+       touch "file$i.txt"
+       i=$((i + 1))
+   done
+
+   tar cvf $1.tar file0.txt file1.txt file2.txt file3.txt file4.txt
+
+   mkdir $1
+   
+   mv $1.tar $1
+   cd $1
+   tar xvf "$1.tar"
+
+fi 
+
+exit 0
+
+
+
+#3-7
+#!/bin/sh
+
+if [ -d "$1" ]
+then
+   :
+else
+   mkdir $1
+   cd $1
+   i=0
+   while [ $i -lt 5 ]
+   do
+       mkdir file$i
+       touch "file$i.txt"
+       ln -s file$i.txt file$i/file$i.txt
+       i=$((i + 1))
+   done
+
+fi 
+
+exit 0
+
+
+
+#3-8
+#!/bin/sh
+
+touch DB.txt
+
+echo $1 $2 >> DB.txt
+
+exit 0
+
+
+#3-9
+#!/bin/sh
+
+sed -n "/$1/p" DB.txt
+
+exit 0
+
